@@ -1,47 +1,64 @@
-/*
- *  Licensed Materials - Property of IBM
- *  5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
- *  US Government Users Restricted Rights - Use, duplication or
- *  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
- */
-
-/************************************************************************
- * Implementation code for procedure - 'procedure1'
- *
- *
- * @return - invocationResult
- */
- 
-var procedure1Statement = "select COLUMN1, COLUMN2 from TABLE1 where COLUMN3 = ?";
-function procedure1(param) {
+var getAccounts = "select accountname, balance from account";
+function jkeGetAccounts() {
 	return MFP.Server.invokeSQLStatement({
-		preparedStatement : procedure1Statement,
-		parameters : [param]
+		preparedStatement : getAccounts,
+		parameters : []
 	});
 }
 
-/************************************************************************
- * Implementation code for procedure - 'procedure2'
- *
- *
- * @return - invocationResult
- */
- 
-function procedure2(param) {
-	return MFP.Server.invokeSQLStoredProcedure({
-		procedure : "storedProcedure2",
-		parameters : [param]
+var enterCheck = "insert into check(ID,AMOUNT,DATE,ACCOUNT,DESCRIPTION,USERNAME) values (?,?,?,?,?,?)";
+function jkeEnterCheck(ID,AMOUNT,DATE,ACCOUNT,DESCRIPTION,USERNAME) {
+	return MFP.Server.invokeSQLStatement({
+		preparedStatement : enterCheck,
+		parameters : [ID,AMOUNT,DATE,ACCOUNT,DESCRIPTION,USERNAME]
 	});
+} 
+
+var getAllTransactions = "select * from (select 'check' as type, check.date, check.amount, check.description, check.account from check) UNION ALL (SELECT 'payment' as type, payment.date, payment.amount, payment.payee as account, payment.acctype as description from payment) ORDER BY date ASC";
+
+/*
+var mqlight = require("mqlight");
+
+var client = mqlight.createClient({service: 'http://mqlightprod-lookup.ng.bluemix.net/Lookup?serviceId=c0c99518-2fdc-4ece-9b33-6db58e284403&tls=true', user: '3EeqFrBVPcbq', password: 'xpSFQCZq7w(%'});
+*/
+
+
+function jkeGetAllTransactions() {
+    /*
+    client.on('started', function() {
+              client.subscribe('test', function(err, pattern) {
+                               if (err) {
+                               console.error('Problem with subscribe request: ', err.message);
+                               } else {
+                               console.log('Subscribed to pattern: ', pattern);
+                               console.log('Sending message : Hello World!');
+                               client.send('test', 'Hello World!');
+                               }
+                               });
+              
+              client.on('message', function(data, delivery) {
+                        console.log('Got message: ', data);
+                        console.log('Exiting.');
+                        process.exit(0);
+                        });
+              });
+    */
+    //var foo = new com.elong.javacode.MQLightTest();
+    //foo.sendMessageToMQLight();
+    
+    return MFP.Server.invokeSQLStatement({
+		preparedStatement : getAllTransactions,
+		parameters : []
+	});
+    
+    
+    
 }
 
-/************************************************************************
- * Implementation code for procedure - 'unprotected'
- *
- *
- * @return - invocationResult
- */
-function unprotected(param) {
-	return {result : "Hello from unprotected resource"};
+var getPayees = "select name from payee";
+function jkeGetPayees() {
+    return MFP.Server.invokeSQLStatement({
+        preparedStatement : getPayees,
+        parameters : []
+    });
 }
-
-

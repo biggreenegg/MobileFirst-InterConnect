@@ -18,12 +18,22 @@
 			<!-- <dataSourceJNDIName>java:/data-source-jndi-name</dataSourceJNDIName> -->
 			
 			<!-- Example for using MySQL connector, do not forget to put the MySQL connector library in the project's lib folder -->
-			<dataSourceDefinition>
+			<!--	<dataSourceDefinition>
 				<driverClass>com.mysql.jdbc.Driver</driverClass>
 				<url>jdbc:mysql://localhost:3306/mydb</url>
 				<user>myUsername</user>
 				<password>myPassword</password>
 			</dataSourceDefinition>
+ 		-->
+
+				<dataSourceDefinition>
+                	<driverClass>com.ibm.db2.jcc.DB2Driver</driverClass>
+                	<url>jdbc:db2://cap-sg-prd-1.integration.ibmcloud.com:15999/vaadindb</url>
+                	<user>db2admin</user>
+                	<password>passw0rd</password>
+            	</dataSourceDefinition>
+			
+			
 		</connectionPolicy>
 	</connectivity>
 
