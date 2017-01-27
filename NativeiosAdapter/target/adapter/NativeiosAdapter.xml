@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="NativeiosAdapter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:sql="http://www.ibm.com/mfp/integration/sql">
+
+	<displayName>NativeiosAdapter</displayName>
+	<description>NativeiosAdapter</description>
+	<connectivity>
+		<connectionPolicy xsi:type="sql:SQLConnectionPolicy">
+			<!-- Example for using a JNDI data source, replace with actual data source name -->
+			<!-- <dataSourceJNDIName>java:/data-source-jndi-name</dataSourceJNDIName>
+			
+			<dataSourceDefinition>
+				<driverClass>com.mysql.jdbc.Driver</driverClass>
+				<url>jdbc:mysql://localhost:3306/mydb</url>
+				<user>myUsername</user>
+				<password>myPassword</password>
+			</dataSourceDefinition>
+            -->
+            
+            <!-- on-prem (esx server connection)
+             <dataSourceDefinition>
+             <driverClass>com.ibm.db2.jcc.DB2Driver</driverClass>
+             <url>jdbc:db2://9.42.115.38:50000/vaadindb</url>
+             <user>db2admin</user>
+             <password>passw0rd</password>
+             </dataSourceDefinition>
+             -->
+            
+            <!-- Bluemix secure gateway to on-prem (esx server connection)-->
+            <dataSourceDefinition>
+                <driverClass>com.ibm.db2.jcc.DB2Driver</driverClass>
+                <url>jdbc:db2://cap-sg-prd-1.integration.ibmcloud.com:15999/vaadindb</url>
+                <user>db2admin</user>
+                <password>passw0rd</password>
+            </dataSourceDefinition>
+            
+            <!-- Bluemix elong@us.ibm.com org SQL DB connection using db2 driver
+            <dataSourceDefinition>
+                <driverClass>com.ibm.db2.jcc.DB2Driver</driverClass>
+                <url>jdbc:db2://75.126.155.153:50000/SQLDB</url>
+                <user>user11807</user>
+                <password>Ec4LHQMaqS5P</password>
+            </dataSourceDefinition>
+            -->
+            
+            <!--Bluemix elong@us.ibm.com org SQL DB connection using mysql driver
+             <dataSourceDefinition>
+             <driverClass>com.mysql.jdbc.Driver</driverClass>
+             <url>jdbc:db2://75.126.155.153:50000/SQLDB</url>
+             <user>user11807</user>
+             <password>Ec4LHQMaqS5P</password>
+             </dataSourceDefinition>
+             -->
+            
+		</connectionPolicy>
+	</connectivity>
+
+	<!-- Replace this with appropriate procedures -->
+    <procedure name="jkeGetAccounts"/>
+    <procedure name="jkeEnterCheck"/>
+    <procedure name="jkeGetAllTransactions"/>
+    <procedure name="jkeGetPayees"/>
+    
+</mfp:adapter>
