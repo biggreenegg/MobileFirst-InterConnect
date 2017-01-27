@@ -38,8 +38,9 @@
 	</connectivity>
 
 	<!-- Replace this with appropriate procedures -->
-	<procedure name="procedure1"/>
-	<procedure name="procedure2"/>
-	<procedure name="unprotected" secured="false"/>
+	<procedure name="jkeGetAccounts"/>
+    <procedure name="jkeEnterCheck"/>
+    <procedure name="jkeGetAllTransactions"/>
+    <procedure name="jkeGetPayees"/>
 
 </mfp:adapter>
