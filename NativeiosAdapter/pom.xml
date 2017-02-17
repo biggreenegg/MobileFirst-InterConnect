@@ -44,11 +44,15 @@
     </dependencies>
     
     <properties>
-        <!--MobileFirst adapter deployment properties for Mobile Foundation on elong@us.ibm.com -->
+        <!--MobileFirst adapter deployment properties for Mobile Foundation on elong@us.ibm.com
         <mfpfUrl>https://jkebankmobilefoundation-ho-server.mybluemix.net</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
         <mfpfPassword>frankLin?9</mfpfPassword>
-        <mfpfRuntime>mfp</mfpfRuntime>
+        <mfpfRuntime>mfp</mfpfRuntime>-->
+        <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
+		<mfpfUser>admin</mfpfUser>
+		<mfpfPassword>maxWell#29</mfpfPassword>
+		<mfpfRuntime>mfp</mfpfRuntime>
     </properties>
     <build>
         <plugins>
